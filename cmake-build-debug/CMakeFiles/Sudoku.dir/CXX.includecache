@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stelios/Documents/Sudoku/Sudoku.cpp
+Sudoku.h
+/home/stelios/Documents/Sudoku/Sudoku.h
+
+/home/stelios/Documents/Sudoku/Sudoku.h
+iostream
+-
+vector
+-
+set
+-
+unordered_map
+-
+
