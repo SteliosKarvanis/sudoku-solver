@@ -66,7 +66,6 @@ void Matrix::solve1() {
                 int indexLine = it->first / 9;
                 int indexSquare = 3 * (it->first / 27) + (it->first % 9) / 3;
                 std::set<int>::iterator itSet;
-                //segmentation fault aqui
                 for(int i = 0; i < 9; i++){
                     if(dic.find(9*indexLine + i) != dic.end()) { // se achar o ponto no dic
                         itSet = dic.find(9 * indexLine + i)->second.find(*it->second.begin()); // cria um iterator para o elemento no set
