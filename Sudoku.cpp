@@ -58,29 +58,32 @@ void Matrix::solve1() {
         changed = false;
         for (auto it = dic.begin(); it != dic.end();) {
             if (it->second.size() == 1) {
-                auto teste1 = it->first;
-                auto teste2 = it->second;
-                this->mat[it->first] = *it->second.begin();
+                int key = *it->second.begin();
+                this->mat[it->first] = key;
                 changed = true;
                 int indexCol = it->first % 9;
                 int indexLine = it->first / 9;
                 int indexSquare = 3 * (it->first / 27) + (it->first % 9) / 3;
-                std::set<int>::iterator itSet;
+                int aux;
+                std::set<int>::iterator itSet, itAux;
                 for(int i = 0; i < 9; i++){
-                    if(dic.find(9*indexLine + i) != dic.end()) { // se achar o ponto no dic
-                        itSet = dic.find(9 * indexLine + i)->second.find(*it->second.begin()); // cria um iterator para o elemento no set
-                        if(itSet != dic.find(9 * indexLine + i)->second.end()) // se encotrar o elemento no set
-                            dic.find(9 * indexLine + i)->second.erase(itSet);
+                    aux = 9 * indexLine + i;
+                    if(dic.find(aux) != dic.end()) { // se achar o ponto no dic
+                        itSet = dic.find(aux)->second.find(key); // cria um iterator para o elemento no set
+                        if(itSet != dic.find(aux)->second.end()) // se encotrar o elemento no set
+                            dic.find(aux)->second.erase(itSet);
                     }
-                    if(dic.find(9*i + indexCol) != dic.end()) {
-                        itSet = dic.find(9*i + indexCol)->second.find(*it->second.begin());
-                        if(itSet != dic.find(9*i + indexCol)->second.end())
+                    aux = 9 * i + indexCol;
+                    if(dic.find(aux) != dic.end()) {
+                        itSet = dic.find(aux)->second.find(key);
+                        if(itSet != dic.find(aux)->second.end())
                             dic.find(9 * i + indexCol)->second.erase(itSet);
                     }
-                    if(dic.find(27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3) != dic.end()) {
-                        itSet = dic.find(27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3)->second.find(*it->second.begin());
-                        if (itSet != dic.find(27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3)->second.end())
-                            dic.find(27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3)->second.erase(itSet);
+                    aux = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3;
+                    if(dic.find(aux) != dic.end()) {
+                        itSet = dic.find(aux)->second.find(key);
+                        if (itSet != dic.find(aux)->second.end())
+                            dic.find(aux)->second.erase(itSet);
                     }
                 }
                 auto it2 = it;
