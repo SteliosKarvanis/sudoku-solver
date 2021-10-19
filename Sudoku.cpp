@@ -38,9 +38,11 @@ std::istream& operator>>(std::istream& is, Matrix& m) {
 
 std::ostream& operator<<(std::ostream& os, Matrix& m) {
     for (int i = 0; i < 81; i++) {
-        std::cout<<m.mat[i]<<" ";
+        std::cout<<m.mat[i];
         if(i % 9 == 8)
             std::cout<<"\n";
+        else
+            std::cout<<" ";
     }
     return os;
 }
@@ -91,7 +93,9 @@ void Matrix::solve1() {
                 this->dic.erase(it);
                 it = it2;
             }
-            it++;
+            else {
+                it++;
+            }
         }
     }
 }
