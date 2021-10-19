@@ -40,7 +40,7 @@ std::ostream& operator<<(std::ostream& os, Matrix& m) {
     for (int i = 0; i < 81; i++) {
         std::cout<<m.mat[i];
         if(i % 9 == 8)
-            std::cout<<"\n";
+            std::cout<<" \n";
         else
             std::cout<<" ";
     }
@@ -69,23 +69,18 @@ void Matrix::solve1() {
                 int aux;
                 std::set<int>::iterator itSet, itAux;
                 for(int i = 0; i < 9; i++){
-                    aux = 9 * indexLine + i;
-                    if(dic.find(aux) != dic.end()) { // se achar o ponto no dic
-                        itSet = dic.find(aux)->second.find(key); // cria um iterator para o elemento no set
-                        if(itSet != dic.find(aux)->second.end()) // se encotrar o elemento no set
-                            dic.find(aux)->second.erase(itSet);
-                    }
-                    aux = 9 * i + indexCol;
-                    if(dic.find(aux) != dic.end()) {
-                        itSet = dic.find(aux)->second.find(key);
-                        if(itSet != dic.find(aux)->second.end())
-                            dic.find(9 * i + indexCol)->second.erase(itSet);
-                    }
-                    aux = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3;
-                    if(dic.find(aux) != dic.end()) {
-                        itSet = dic.find(aux)->second.find(key);
-                        if (itSet != dic.find(aux)->second.end())
-                            dic.find(aux)->second.erase(itSet);
+                    for(int j = 0; j < 3; j++) {
+                        if(j == 0)
+                            aux = 9 * indexLine + i;
+                        else if(j == 1)
+                            aux = 9 * i + indexCol;
+                        else
+                            aux = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3;
+                        if (dic.find(aux) != dic.end()) {
+                            itSet = dic.find(aux)->second.find(key);
+                            if (itSet != dic.find(aux)->second.end())
+                                dic.find(aux)->second.erase(itSet);
+                        }
                     }
                 }
                 auto it2 = it;
