@@ -10,7 +10,5 @@ int main(){
     a.solve();
     if(a.solved())
         std::cout<<a;
-    else
-        std::cout<<"Nao\n";
     return 0;
 }

@@ -9,6 +9,7 @@
 #include <vector>
 #include <set>
 #include <unordered_map>
+#include <queue>
 
 struct Matrix{
 public:
@@ -20,7 +21,7 @@ public:
 private:
     std::vector<int>mat = static_cast<std::vector<int>>(81);
     void solve1();
-    Matrix solve2();
+    void solve2();
     std::unordered_map<int, std::set<int>> dic;
 };
 
