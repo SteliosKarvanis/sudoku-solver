@@ -116,72 +116,57 @@ void Matrix::solve1()
 
 void Matrix::solve()
 {
-    while (!solved())
-    {
-        solve1();
-        if (!solved())
-            solve2();
-    }
+    solve1();
+    if (!solved())
+        solve2();
 }
 
 void Matrix::solve2()
 {
-    std::queue<Matrix> mQueue;
     Matrix aux;
-    mQueue.push(*this);
-    while (true)
-    {
-        for (auto it = mQueue.front().dic.begin(); it != mQueue.front().dic.end(); it++)
-        { // percorre o dic do front
-            for (auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
-            { // substitui um valor do dic
-                aux = mQueue.front();
-                int key = *it2;
-                aux.mat[it->first] = key;
-                int indexCol = it->first % 9;
-                int indexLine = it->first / 9;
-                int indexSquare = 3 * (it->first / 27) + (it->first % 9) / 3;
-                int aux2;
-                std::set<int>::iterator itSet;
-                bool valid = true;
-                aux.dic.erase(it->first);
-                for (int i = 0; i < 9 && valid; i++)
+    auto it = dic.begin();
+    for (auto it2 = it->second.begin(); it2 != it->second.end(); it2++)
+    { // substitui um valor do dic
+        aux = *this;
+        int key = *it2;
+        aux.mat[it->first] = key;
+        int indexCol = it->first % 9;
+        int indexLine = it->first / 9;
+        int indexSquare = 3 * (it->first / 27) + (it->first % 9) / 3;
+        int aux2;
+        std::set<int>::iterator itSet;
+        bool valid = true;
+        aux.dic.erase(it->first);
+        for (int i = 0; i < 9 && valid; i++)
+        {
+            for (int j = 0; j < 3 && valid; j++)
+            {
+                if (j == 0)
+                    aux2 = 9 * indexLine + i;
+                else if (j == 1)
+                    aux2 = 9 * i + indexCol;
+                else
+                    aux2 = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3;
+                if (aux.dic.find(aux2) != aux.dic.end())
                 {
-                    for (int j = 0; j < 3; j++)
+                    itSet = aux.dic.find(aux2)->second.find(key);
+                    if (itSet != aux.dic.find(aux2)->second.end())
                     {
-                        if (j == 0)
-                            aux2 = 9 * indexLine + i;
-                        else if (j == 1)
-                            aux2 = 9 * i + indexCol;
-                        else
-                            aux2 = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3;
-                        if (aux.dic.find(aux2) != aux.dic.end())
-                        {
-                            itSet = aux.dic.find(aux2)->second.find(key);
-                            if (itSet != aux.dic.find(aux2)->second.end())
-                            {
-                                aux.dic.find(aux2)->second.erase(itSet);
-                                if (aux.dic.find(aux2)->second.empty() && aux2 != it->first)
-                                {
-                                    valid = false;
-                                    continue;
-                                }
-                            }
-                        }
+                        aux.dic.find(aux2)->second.erase(itSet);
+                        if (aux.dic.find(aux2)->second.empty())
+                            valid = false;
                     }
-                }
-                if (valid)
-                {
-                    aux.solve1();
-                    if (aux.solved())
-                    {
-                        *this = aux;
-                        return;
-                    }
-                    mQueue.push(aux);
                 }
             }
         }
-        mQueue.pop();
+        if (valid)
+        {
+            aux.solve();
+            if (aux.solved())
+            {
+                *this = aux;
+                return;
+            }
+        }
     }
 }
