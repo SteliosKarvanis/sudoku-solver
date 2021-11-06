@@ -57,7 +57,6 @@ bool Sudoku::solved(){
 
 void Sudoku::solve1(){
     bool changed = true;
-    // int indexCol, indexLine, indexSquare, aux, value;
     std::set<int>::iterator itSet;
     while (changed){
         changed = false;

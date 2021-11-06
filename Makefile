@@ -5,4 +5,3 @@ all: *.cpp
 
 clean:
 	@rm program
-# for i in {1..10}; do ./program < Casos/$i.in | diff - Casos/$i.out; done
