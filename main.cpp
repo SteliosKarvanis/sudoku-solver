@@ -10,5 +10,7 @@ int main(){
     a.solve();
     if(a.solved())
         std::cout<<a;
+    else
+        std::cout<<"Not Solved";
     return 0;
 }

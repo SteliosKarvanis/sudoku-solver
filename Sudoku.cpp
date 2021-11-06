@@ -1,3 +1,6 @@
+//
+// Created by stelios on 13/09/2021.
+//
 
 #include "Sudoku.h"
 
@@ -10,7 +13,7 @@ std::istream &operator>>(std::istream &is, Sudoku &m){
     col.resize(9);
     square.resize(9);
     for (int i = 0; i < 81; i++){
-        std::cin >> aux;
+        is >> aux;
         m.mat[i] = aux;
         if (aux != 0){
             line[i / 9].insert(aux);
