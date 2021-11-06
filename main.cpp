@@ -5,7 +5,7 @@
 #include "Sudoku.h"
 
 int main(){
-    Matrix a;
+    Sudoku a;
     std::cin>>a;
     a.solve();
     if(a.solved())
