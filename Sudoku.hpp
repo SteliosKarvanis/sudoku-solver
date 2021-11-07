@@ -13,13 +13,14 @@
 struct Sudoku{
 public:
     Sudoku() = default;
+    ~Sudoku();
     bool solved();
     void solve();
     friend std::istream& operator>>(std::istream& is, Sudoku& m);
     friend std::ostream& operator<<(std::ostream& os, const Sudoku& m);
 
 protected:
-    bool putValue(const int& pos, const int& value);
+    bool putValue(int pos, int value);
     void solve1();
     void solve2();
 

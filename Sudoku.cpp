@@ -20,7 +20,7 @@ std::istream &operator>>(std::istream &is, Sudoku &m){
         }
         else{
             std::set<int> a;
-            m.missing.insert(std::make_pair(i, std::move(a)));
+            m.missing.insert(std::make_pair(i, a));
         }
     }
     std::set<int> setAux;
@@ -56,7 +56,6 @@ bool Sudoku::solved(){
 
 void Sudoku::solve1(){
     bool changed = true;
-    std::set<int>::iterator itSet;
     while (changed){
         changed = false;
         for (auto it = missing.begin(); it != missing.end();){
@@ -102,7 +101,7 @@ void Sudoku::solve2(){
     }
 }
 
-bool Sudoku::putValue(const int& pos, const int& value){
+bool Sudoku::putValue(int pos, int value){
     int aux;
     std::set<int>::iterator itSet;
     this->nums[pos] = value;
@@ -129,4 +128,10 @@ bool Sudoku::putValue(const int& pos, const int& value){
         }
     }
     return true;
+}
+
+Sudoku::~Sudoku() {
+    missing.clear();
+    nums.clear();
+    nums.shrink_to_fit();
 }
