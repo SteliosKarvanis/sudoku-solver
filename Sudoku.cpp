@@ -2,19 +2,17 @@
 // Created by stelios on 13/09/2021.
 //
 
-#include "Sudoku.h"
+#include "Sudoku.hpp"
 
 std::istream &operator>>(std::istream &is, Sudoku &m){
     int aux;
-    std::vector<std::set<int>> line;
-    std::vector<std::set<int>> col;
-    std::vector<std::set<int>> square;
+    std::vector<std::set<int>> line, col, square;
     line.resize(9);
     col.resize(9);
     square.resize(9);
     for (int i = 0; i < 81; i++){
         is >> aux;
-        m.mat[i] = aux;
+        m.nums[i] = aux;
         if (aux != 0){
             line[i / 9].insert(aux);
             col[i % 9].insert(aux);
@@ -22,28 +20,26 @@ std::istream &operator>>(std::istream &is, Sudoku &m){
         }
         else{
             std::set<int> a;
-            m.dic.insert(std::make_pair(i, a));
+            m.missing.insert(std::make_pair(i, std::move(a)));
         }
     }
     std::set<int> setAux;
-    for (auto & it : m.dic){
+    for (auto & it : m.missing){
         setAux.clear();
         int num = it.first;
         setAux.insert(line[num / 9].begin(), line[num / 9].end());
         setAux.insert(col[num % 9].begin(), col[num % 9].end());
         setAux.insert(square[3 * (num / 27) + (num % 9) / 3].begin(), square[3 * (num / 27) + (num % 9) / 3].end());
-        for (int k = 1; k <= 9; k++){
-            if (setAux.find(k) == setAux.end()){
+        for (int k = 1; k <= 9; k++)
+            if (setAux.find(k) == setAux.end())
                 it.second.insert(k);
-            }
-        }
     }
     return is;
 }
 
-std::ostream &operator<<(std::ostream &os, Sudoku &m){
+std::ostream &operator<<(std::ostream &os, const Sudoku &m){
     for (int i = 0; i < 81; i++){
-        os << m.mat[i];
+        os << m.nums[i];
         if (i % 9 == 8)
             os << " \n";
         else
@@ -53,7 +49,7 @@ std::ostream &operator<<(std::ostream &os, Sudoku &m){
 }
 
 bool Sudoku::solved(){
-    if (dic.empty())
+    if (missing.empty())
         return true;
     return false;
 }
@@ -63,17 +59,16 @@ void Sudoku::solve1(){
     std::set<int>::iterator itSet;
     while (changed){
         changed = false;
-        for (auto it = dic.begin(); it != dic.end();){
+        for (auto it = missing.begin(); it != missing.end();){
             if (it->second.size() == 1){
                 changed = true;
                 auto it2 = it;
                 it2++;
-                substituteValue(it->first, *it->second.begin());
+                putValue(it->first, *it->second.begin());
                 it = it2;
             }
-            else{
+            else
                 it++;
-            }
         }
     }
 }
@@ -86,25 +81,18 @@ void Sudoku::solve(){
 
 void Sudoku::solve2(){
     Sudoku aux;
-    bool valid, finded = false;
-    auto it = dic.begin();
+    auto it = missing.begin();
     unsigned int minValue = 0;
-    while(!finded){
-        while(it != dic.end() && !finded){
-            if(minValue == it->second.size())
-                finded = true;
-            else
-                it++;
-        }
-        if(!finded) {
-            it = dic.begin();
+    while(minValue != it->second.size()){
+        it++;
+        if(it == missing.end()){
+            it = missing.begin();
             minValue++;
         }
     }
     for (auto it2 = it->second.begin(); it2 != it->second.end(); it2++){
         aux = *this;
-        valid = aux.substituteValue(it->first, *it2);
-        if (valid){
+        if (aux.putValue(it->first, *it2)){
             aux.solve();
             if (aux.solved()){
                 *this = aux;
@@ -114,32 +102,31 @@ void Sudoku::solve2(){
     }
 }
 
-bool Sudoku::substituteValue(int pos, int value){
+bool Sudoku::putValue(const int& pos, const int& value){
     int aux;
-    bool valid = true;
     std::set<int>::iterator itSet;
-    this->mat[pos] = value;
+    this->nums[pos] = value;
     int indexCol = pos % 9;
     int indexLine = pos / 9;
     int indexSquare = 3 * (pos / 27) + (pos % 9) / 3;
-    dic.erase(pos);
-    for (int i = 0; i < 9 && valid; i++){
-        for (int j = 0; j < 3 && valid; j++){
+    missing.erase(pos);
+    for (int i = 0; i < 9; i++){
+        for (int j = 0; j < 3; j++){
             if (j == 0)
                 aux = 9 * indexLine + i;
             else if (j == 1)
                 aux = 9 * i + indexCol;
             else
                 aux = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3;
-            if (dic.find(aux) != dic.end()){
-                itSet = dic.find(aux)->second.find(value);
-                if (itSet != dic.find(aux)->second.end()) {
-                    dic.find(aux)->second.erase(itSet);
-                    if (dic.find(aux)->second.empty())
-                        valid = false;
+            if (missing.find(aux) != missing.end()){
+                itSet = missing.find(aux)->second.find(value);
+                if (itSet != missing.find(aux)->second.end()) {
+                    missing.find(aux)->second.erase(itSet);
+                    if (missing.find(aux)->second.empty())
+                        return false;
                 }
             }
         }
     }
-    return valid;
+    return true;
 }

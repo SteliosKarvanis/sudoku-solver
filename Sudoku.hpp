@@ -16,17 +16,16 @@ public:
     bool solved();
     void solve();
     friend std::istream& operator>>(std::istream& is, Sudoku& m);
-    friend std::ostream& operator<<(std::ostream& os, Sudoku& m);
+    friend std::ostream& operator<<(std::ostream& os, const Sudoku& m);
 
 protected:
-    bool substituteValue(int pos, int value);
-
-private:
-    std::vector<int>mat = static_cast<std::vector<int>>(81);
+    bool putValue(const int& pos, const int& value);
     void solve1();
     void solve2();
-    std::unordered_map<int, std::set<int>> dic;
-};
 
+private:
+    std::vector<int>nums = static_cast<std::vector<int>>(81);
+    std::unordered_map<int, std::set<int>> missing;
+};
 
 #endif //LAB1EX_MATRIX_HPP
