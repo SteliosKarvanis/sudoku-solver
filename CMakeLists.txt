@@ -8,4 +8,4 @@ include_directories(.)
 add_executable(Sudoku
         main.cpp
         Sudoku.cpp
-        Sudoku.h)
+        Sudoku.hpp)
