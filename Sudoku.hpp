@@ -13,7 +13,6 @@
 struct Sudoku{
 public:
     Sudoku() = default;
-    ~Sudoku();
     bool solved();
     void solve();
     friend std::istream& operator>>(std::istream& is, Sudoku& m);

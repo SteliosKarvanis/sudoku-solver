@@ -18,10 +18,8 @@ std::istream &operator>>(std::istream &is, Sudoku &m){
             col[i % 9].insert(aux);
             square[3 * (i / 27) + (i % 9) / 3].insert(aux);
         }
-        else{
-            std::set<int> a;
-            m.missing.insert(std::make_pair(i, a));
-        }
+        else
+            m.missing.insert(std::make_pair(i, std::set<int>{}));
     }
     std::set<int> setAux;
     for (auto & it : m.missing){
@@ -128,10 +126,4 @@ bool Sudoku::putValue(int pos, int value){
         }
     }
     return true;
-}
-
-Sudoku::~Sudoku() {
-    missing.clear();
-    nums.clear();
-    nums.shrink_to_fit();
 }
