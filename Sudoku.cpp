@@ -110,11 +110,11 @@ bool Sudoku::putValue(int pos, int value){
     for (int i = 0; i < 9; i++){
         for (int j = 0; j < 3; j++){
             if (j == 0)
-                aux = 9 * indexLine + i;
+                aux = 9 * indexLine + i; // for each aux in line i
             else if (j == 1)
-                aux = 9 * i + indexCol;
+                aux = 9 * i + indexCol; // for each aux in col i
             else
-                aux = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3;
+                aux = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3; // for each aux in square i
             if (missing.find(aux) != missing.end()){
                 itSet = missing.find(aux)->second.find(value);
                 if (itSet != missing.find(aux)->second.end()) {
