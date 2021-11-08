@@ -87,14 +87,12 @@ void Sudoku::solve2(){
             minValue++;
         }
     }
-    for (auto it2 = it->second.begin(); it2 != it->second.end(); it2++){
+    for (auto it2 = it->second.begin(); it2 != it->second.end() && !this->solved(); it2++){
         aux = *this;
         if (aux.putValue(it->first, *it2)){
             aux.solve();
-            if (aux.solved()){
+            if (aux.solved())
                 *this = aux;
-                return;
-            }
         }
     }
 }
