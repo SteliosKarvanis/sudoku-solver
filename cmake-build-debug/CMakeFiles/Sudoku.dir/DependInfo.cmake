@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/stelios/Documents/Sudoku/Sudoku.cpp" "/home/stelios/Documents/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/Sudoku.cpp.o"
-  "/home/stelios/Documents/Sudoku/main.cpp" "/home/stelios/Documents/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/main.cpp.o"
+  "/home/stelios/Documents/sudokuCES11/Sudoku.cpp" "/home/stelios/Documents/sudokuCES11/cmake-build-debug/CMakeFiles/Sudoku.dir/Sudoku.cpp.o"
+  "/home/stelios/Documents/sudokuCES11/main.cpp" "/home/stelios/Documents/sudokuCES11/cmake-build-debug/CMakeFiles/Sudoku.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

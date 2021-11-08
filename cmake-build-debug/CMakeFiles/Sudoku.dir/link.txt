@@ -1,1 +1,1 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/Sudoku.dir/main.cpp.o CMakeFiles/Sudoku.dir/Sudoku.cpp.o -o Sudoku 
+/usr/bin/c++ -fsanitize=address,leak,undefined -g -rdynamic CMakeFiles/Sudoku.dir/main.cpp.o CMakeFiles/Sudoku.dir/Sudoku.cpp.o -o Sudoku 

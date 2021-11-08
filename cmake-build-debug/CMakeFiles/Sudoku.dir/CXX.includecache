@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/stelios/Documents/Sudoku/Sudoku.cpp
-Sudoku.h
-/home/stelios/Documents/Sudoku/Sudoku.h
+/home/stelios/Documents/sudokuCES11/Sudoku.cpp
+Sudoku.hpp
+/home/stelios/Documents/sudokuCES11/Sudoku.hpp
 
-/home/stelios/Documents/Sudoku/Sudoku.h
+/home/stelios/Documents/sudokuCES11/Sudoku.hpp
 iostream
 -
 vector
@@ -18,7 +18,5 @@ vector
 set
 -
 unordered_map
--
-queue
 -
 

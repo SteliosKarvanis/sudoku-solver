@@ -53,10 +53,10 @@ RM = /snap/clion/169/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/stelios/Documents/Sudoku
+CMAKE_SOURCE_DIR = /home/stelios/Documents/sudokuCES11
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/stelios/Documents/Sudoku/cmake-build-debug
+CMAKE_BINARY_DIR = /home/stelios/Documents/sudokuCES11/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Sudoku.dir/depend.make
@@ -68,29 +68,29 @@ include CMakeFiles/Sudoku.dir/flags.make
 
 CMakeFiles/Sudoku.dir/main.cpp.o: CMakeFiles/Sudoku.dir/flags.make
 CMakeFiles/Sudoku.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stelios/Documents/Sudoku/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Sudoku.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Sudoku.dir/main.cpp.o -c /home/stelios/Documents/Sudoku/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stelios/Documents/sudokuCES11/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Sudoku.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Sudoku.dir/main.cpp.o -c /home/stelios/Documents/sudokuCES11/main.cpp
 
 CMakeFiles/Sudoku.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Sudoku.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stelios/Documents/Sudoku/main.cpp > CMakeFiles/Sudoku.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stelios/Documents/sudokuCES11/main.cpp > CMakeFiles/Sudoku.dir/main.cpp.i
 
 CMakeFiles/Sudoku.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Sudoku.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stelios/Documents/Sudoku/main.cpp -o CMakeFiles/Sudoku.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stelios/Documents/sudokuCES11/main.cpp -o CMakeFiles/Sudoku.dir/main.cpp.s
 
 CMakeFiles/Sudoku.dir/Sudoku.cpp.o: CMakeFiles/Sudoku.dir/flags.make
 CMakeFiles/Sudoku.dir/Sudoku.cpp.o: ../Sudoku.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stelios/Documents/Sudoku/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Sudoku.dir/Sudoku.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Sudoku.dir/Sudoku.cpp.o -c /home/stelios/Documents/Sudoku/Sudoku.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stelios/Documents/sudokuCES11/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Sudoku.dir/Sudoku.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Sudoku.dir/Sudoku.cpp.o -c /home/stelios/Documents/sudokuCES11/Sudoku.cpp
 
 CMakeFiles/Sudoku.dir/Sudoku.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Sudoku.dir/Sudoku.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stelios/Documents/Sudoku/Sudoku.cpp > CMakeFiles/Sudoku.dir/Sudoku.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stelios/Documents/sudokuCES11/Sudoku.cpp > CMakeFiles/Sudoku.dir/Sudoku.cpp.i
 
 CMakeFiles/Sudoku.dir/Sudoku.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Sudoku.dir/Sudoku.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stelios/Documents/Sudoku/Sudoku.cpp -o CMakeFiles/Sudoku.dir/Sudoku.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stelios/Documents/sudokuCES11/Sudoku.cpp -o CMakeFiles/Sudoku.dir/Sudoku.cpp.s
 
 # Object files for target Sudoku
 Sudoku_OBJECTS = \
@@ -104,7 +104,7 @@ Sudoku: CMakeFiles/Sudoku.dir/main.cpp.o
 Sudoku: CMakeFiles/Sudoku.dir/Sudoku.cpp.o
 Sudoku: CMakeFiles/Sudoku.dir/build.make
 Sudoku: CMakeFiles/Sudoku.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stelios/Documents/Sudoku/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Sudoku"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/stelios/Documents/sudokuCES11/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Sudoku"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Sudoku.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -116,6 +116,6 @@ CMakeFiles/Sudoku.dir/clean:
 .PHONY : CMakeFiles/Sudoku.dir/clean
 
 CMakeFiles/Sudoku.dir/depend:
-	cd /home/stelios/Documents/Sudoku/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/stelios/Documents/Sudoku /home/stelios/Documents/Sudoku /home/stelios/Documents/Sudoku/cmake-build-debug /home/stelios/Documents/Sudoku/cmake-build-debug /home/stelios/Documents/Sudoku/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/stelios/Documents/sudokuCES11/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/stelios/Documents/sudokuCES11 /home/stelios/Documents/sudokuCES11 /home/stelios/Documents/sudokuCES11/cmake-build-debug /home/stelios/Documents/sudokuCES11/cmake-build-debug /home/stelios/Documents/sudokuCES11/cmake-build-debug/CMakeFiles/Sudoku.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Sudoku.dir/depend
 

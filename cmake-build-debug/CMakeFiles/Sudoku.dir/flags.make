@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/stelios/Documents/Sudoku/.
+CXX_INCLUDES = -I/home/stelios/Documents/sudokuCES11/.
 
-CXX_FLAGS = -g -std=gnu++1z
+CXX_FLAGS = -fsanitize=address,leak,undefined -g -std=gnu++1z
 

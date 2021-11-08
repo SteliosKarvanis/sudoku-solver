@@ -3,7 +3,7 @@
 
 CMakeFiles/Sudoku.dir/Sudoku.cpp.o: \
  ../Sudoku.cpp \
- ../Sudoku.h
+ ../Sudoku.hpp
 CMakeFiles/Sudoku.dir/main.cpp.o: \
- ../Sudoku.h \
+ ../Sudoku.hpp \
  ../main.cpp
