@@ -4,7 +4,7 @@ for i in *.in
 do
 
 file=${i%.*}
-./../program < "${file}".in > "${file}".txt
+./../bin/program < "${file}".in > "${file}".txt
 
 if ! (cmp --silent -- "${file}.out" "${file}.txt"); then
 echo "$file" are diferent
