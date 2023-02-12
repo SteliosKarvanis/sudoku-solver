@@ -5,7 +5,7 @@
 #ifndef SUDOKU_SUDOKUSOLVER_HPP
 #define SUDOKU_SUDOKUSOLVER_HPP
 
-#include "Sudoku.hpp"
+#include "data_structures/Sudoku.hpp"
 
 enum class SOLVER_STATUS{
     UNSOLVED,
