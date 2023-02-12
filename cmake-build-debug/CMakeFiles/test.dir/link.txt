@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wextra -Wall -O0 -g -pedantic -lm -fsanitize=address,leak,undefined -g -rdynamic CMakeFiles/test.dir/SudokuSolver.cpp.o CMakeFiles/test.dir/Sudoku.cpp.o CMakeFiles/test.dir/test.cpp.o -o /home/samcbk/Desktop/sudokuCES11/bin/test 

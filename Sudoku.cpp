@@ -4,124 +4,174 @@
 
 #include "Sudoku.hpp"
 
-std::istream &operator>>(std::istream &is, Sudoku &m){
-    int aux;
-    std::vector<std::set<int>> line, col, square;
-    line.resize(9);
-    col.resize(9);
-    square.resize(9);
-    for (int i = 0; i < 81; i++){
-        is >> aux;
-        m.nums[i] = aux;
-        if (aux != 0){
-            line[i / 9].insert(aux);
-            col[i % 9].insert(aux);
-            square[3 * (i / 27) + (i % 9) / 3].insert(aux);
+Sudoku::Sudoku() {
+    memset(table, 0, sizeof(table));
+    createAllPossibilities();
+}
+
+Sudoku::Sudoku(const std::string& filename) {
+    if(!getFromFile(filename)){
+        memset(table, 0, sizeof(table));
+        createAllPossibilities();
+    }
+}
+
+bool Sudoku::getFromFile(const std::string& filename) {
+    std::ifstream file(("../" + filename).c_str());
+    if(file.bad())
+        return false;
+    std::string text_line;
+    for (auto& line : table) {
+        std::getline(file, text_line);
+        std::stringstream ss(text_line);
+        for (int& num : line) {
+            ss >> num;
         }
-        else
-            m.missing.insert(std::make_pair(i, std::set<int>{}));
     }
-    std::set<int> setAux;
-    for (auto & it : m.missing){
-        setAux.clear();
-        int num = it.first;
-        setAux.insert(line[num / 9].begin(), line[num / 9].end());
-        setAux.insert(col[num % 9].begin(), col[num % 9].end());
-        setAux.insert(square[3 * (num / 27) + (num % 9) / 3].begin(), square[3 * (num / 27) + (num % 9) / 3].end());
-        for (int k = 1; k <= 9; k++)
-            if (setAux.find(k) == setAux.end())
-                it.second.insert(k);
+    file.close();
+    this->createAllPossibilities();
+    return true;
+}
+
+void Sudoku::saveInFile(const std::string& filename) const{
+    std::string outputFolder = "../output";
+    if (!std::filesystem::is_directory(outputFolder))
+        system(("mkdir " + outputFolder).c_str());
+    std::ofstream file(outputFolder + "/" + filename);
+    for (const auto & line : this->table){
+        for (const int& num : line)
+            file << num << " ";
+        file << "\n";
     }
+    file.close();
+}
+
+int Sudoku::getSquare(int line, int col){
+    int squareRow = line / 3;
+    int squareCol = col / 3;
+    return 3 * squareRow + squareCol;
+}
+
+int Sudoku::getSquare(int pos){
+    return Sudoku::getSquare(pos / 9, pos % 9);
+}
+
+int Sudoku::getPos(int line, int col){
+    return 9 * line + col;
+}
+
+int Sudoku::getLine(int pos){
+    return pos / 9;
+}
+
+int Sudoku::getCol(int pos){
+    return pos % 9;
+}
+
+std::istream &operator>>(std::istream &is, Sudoku &sudoku){
+    for(auto& line : sudoku.table)
+        for(int& num : line)
+            is >> num;
+    sudoku.createAllPossibilities();
     return is;
 }
 
-std::ostream &operator<<(std::ostream &os, const Sudoku &m){
-    for (int i = 0; i < 81; i++){
-        os << m.nums[i];
-        if (i % 9 == 8)
-            os << " \n";
-        else
-            os << " ";
+std::ostream &operator<<(std::ostream &os, const Sudoku &sudoku){
+    for (const auto& line : sudoku.table){
+        for (const int& num : line)
+            os << num << " ";
+        os << "\n";
     }
     return os;
 }
 
-bool Sudoku::solved(){
-    if (missing.empty())
-        return true;
-    return false;
+std::set<int> Sudoku::getPossibilities(int pos){
+    return possibilities[pos];
 }
 
-void Sudoku::solve1(){
-    bool changed = true;
-    while (changed){
-        changed = false;
-        for (auto it = missing.begin(); it != missing.end();){
-            if (it->second.size() == 1){
-                changed = true;
-                auto it2 = it;
-                it2++;
-                putValue(it->first, *it->second.begin());
-                it = it2;
-            }
-            else
-                it++;
-        }
+std::set<int> Sudoku::getPossibilities(int line, int col){
+    return getPossibilities(getPos(line, col));
+}
+
+bool Sudoku::putValue(int line, int col, int value){
+    if(line < 0 || line >= 9 || col < 0 || col >= 9 || value <= 0 || value > 9 || getValue(line, col) != 0
+    || possibilities[getPos(line, col)].find(value) == possibilities[getPos(line, col)].end())
+        return false;
+    this->table[line][col] = value;
+    this->updatePossibilities(line, col);
+    return true;
+}
+
+bool Sudoku::putValue(int pos, int value) {
+    return putValue(getLine(pos), getCol(pos), value);
+}
+
+bool Sudoku::isSolved() const{
+    return possibilities.empty();
+}
+
+void Sudoku::updatePossibilities(int line, int col){
+    return updatePossibilities(getPos(line, col));
+}
+
+void Sudoku::updatePossibilities(int pos) {
+    possibilities.erase(pos);
+    int value = getValue(pos);
+    std::set<int> positions = getInfluentPositions(pos);
+    for (const int& position : positions)
+        if(possibilities.find(position) != possibilities.end() && possibilities[position].find(value) != possibilities[position].end())
+            possibilities[position].erase(value);
+}
+
+std::set<int> Sudoku::getInfluentPositions(int line, int col){
+    std::set<int> positions;
+    int pos = getPos(line, col);
+    int square = getSquare(line, col);
+    for (int index = 0; index < 9; ++index) {
+        positions.insert(getPos(line, index));
+        positions.insert(getPos(index, col));
+        positions.insert(getPos(3*(square / 3) + index / 3, 3*(square % 3) + index % 3));
     }
+    positions.erase(pos);
+    return positions;
 }
 
-void Sudoku::solve(){
-    solve1();
-    if (!solved())
-        solve2();
+std::set<int> Sudoku::getInfluentPositions(int pos){
+    return getInfluentPositions(getLine(pos), getCol(pos));
 }
 
-void Sudoku::solve2(){
-    Sudoku aux;
-    auto it = missing.begin();
-    unsigned int minValue = 0;
-    while(minValue != it->second.size()){
-        it++;
-        if(it == missing.end()){
-            it = missing.begin();
-            minValue++;
-        }
-    }
-    for (auto it2 = it->second.begin(); it2 != it->second.end() && !this->solved(); it2++){
-        aux = *this;
-        if (aux.putValue(it->first, *it2)){
-            aux.solve();
-            if (aux.solved())
-                *this = aux;
-        }
-    }
+int Sudoku::getValue(int line, int col) const{
+    return table[line][col];
 }
 
-bool Sudoku::putValue(int pos, int value){
-    int aux;
-    std::set<int>::iterator itSet;
-    this->nums[pos] = value;
-    int indexCol = pos % 9;
-    int indexLine = pos / 9;
-    int indexSquare = 3 * (pos / 27) + (pos % 9) / 3;
-    missing.erase(pos);
-    for (int i = 0; i < 9; i++){
-        for (int j = 0; j < 3; j++){
-            if (j == 0)
-                aux = 9 * indexLine + i; // for each aux in line i
-            else if (j == 1)
-                aux = 9 * i + indexCol; // for each aux in col i
-            else
-                aux = 27 * (indexSquare / 3) + 3 * (indexSquare % 3) + 9 * (i / 3) + i % 3; // for each aux in square i
-            if (missing.find(aux) != missing.end()){
-                itSet = missing.find(aux)->second.find(value);
-                if (itSet != missing.find(aux)->second.end()) {
-                    missing.find(aux)->second.erase(itSet);
-                    if (missing.find(aux)->second.empty())
-                        return false;
-                }
-            }
+int Sudoku::getValue(int pos) const{
+    return getValue(getLine(pos), getCol(pos));
+}
+
+void Sudoku::createPossibilities(int pos) {
+    std::set<int> allPossibilities = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::set<int> positions = getInfluentPositions(pos);
+    for (int position : positions)
+        allPossibilities.erase(getValue(position));
+    possibilities[pos] = allPossibilities;
+}
+
+void Sudoku::createAllPossibilities() {
+    for (int pos = 0; pos < 81; pos++)
+        if(getValue(pos) == 0)
+            createPossibilities(pos);
+}
+
+bool operator==(const Sudoku& sudoku1, const Sudoku& sudoku2) {
+    for(int line = 0; line < 9; line++){
+        for (int col = 0; col < 9; ++col) {
+            if(sudoku1.getValue(line, col) != sudoku2.getValue(line, col))
+                return false;
         }
     }
     return true;
+}
+
+std::unordered_map<int, std::set<int>> Sudoku::getAllPossibilities() const{
+    return possibilities;
 }

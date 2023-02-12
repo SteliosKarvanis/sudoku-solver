@@ -1,0 +1,4 @@
+/home/samcbk/Desktop/sudokuCES11/cmake-build-debug/CMakeFiles/program.dir
+/home/samcbk/Desktop/sudokuCES11/cmake-build-debug/CMakeFiles/test.dir
+/home/samcbk/Desktop/sudokuCES11/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/samcbk/Desktop/sudokuCES11/cmake-build-debug/CMakeFiles/rebuild_cache.dir
