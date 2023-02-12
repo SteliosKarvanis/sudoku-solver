@@ -11,13 +11,10 @@ int main(int argc, char *argv[]){
         auto output = SudokuSolver::solve(*sudoku);
         Sudoku solve = output.first;
         SOLVER_STATUS status = output.second;
-        if (status == SOLVER_STATUS::UNIQUE) {
-            //std::cout << solve << "\n";
+        if (status == SOLVER_STATUS::UNIQUE)
             std::cout << "Solved " + std::to_string(i) + "\n";
-        } else {
+        else
             std::cout << "Unsolved " + std::to_string(i) + "\n";
-        }
-        shp<Sudoku> sudoku2 = mshp<Sudoku>("tests/" + std::to_string(i) + ".out");
     }
     return 0;
 }
