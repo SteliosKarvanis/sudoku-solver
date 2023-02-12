@@ -2,8 +2,8 @@
 // Created by samcbk on 20/12/22.
 //
 
-#ifndef SUDOKU_SUDOKUSOLVER_H
-#define SUDOKU_SUDOKUSOLVER_H
+#ifndef SUDOKU_SUDOKUSOLVER_HPP
+#define SUDOKU_SUDOKUSOLVER_HPP
 
 #include "Sudoku.hpp"
 
@@ -26,4 +26,4 @@ private:
 };
 
 
-#endif //SUDOKU_SUDOKUSOLVER_H
+#endif //SUDOKU_SUDOKUSOLVER_HPP

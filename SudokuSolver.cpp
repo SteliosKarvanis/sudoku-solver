@@ -2,7 +2,7 @@
 // Created by samcbk on 20/12/22.
 //
 
-#include "SudokuSolver.h"
+#include "SudokuSolver.hpp"
 
 Sudoku SudokuSolver::fillUniqueMissing(Sudoku sudoku){
     bool changed = true;

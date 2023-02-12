@@ -2,7 +2,7 @@
 // Created by stelios on 15/09/2021.
 //
 
-#include "SudokuSolver.h"
+#include "SudokuSolver.hpp"
 
 int main(int argc, char *argv[]){
     for(int i = 1; i <= 46; i++) {
