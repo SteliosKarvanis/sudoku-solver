@@ -95,7 +95,7 @@ std::set<int> Sudoku::getPossibilities(int line, int col){
 
 bool Sudoku::putValue(int line, int col, int value){
     if(line < 0 || line >= 9 || col < 0 || col >= 9 || value <= 0 || value > 9 || getValue(line, col) != 0
-    || possibilities[getPos(line, col)].find(value) == possibilities[getPos(line, col)].end())
+       || possibilities[getPos(line, col)].find(value) == possibilities[getPos(line, col)].end())
         return false;
     this->table[line][col] = value;
     this->updatePossibilities(line, col);

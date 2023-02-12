@@ -13,10 +13,10 @@
 #include "Sudoku.hpp"
 
 enum class SOLVER_STATUS{
-     UNSOLVED,
-     UNIQUE,
-     MULTIPLE,
-     IMPOSSIBLE,
+    UNSOLVED,
+    UNIQUE,
+    MULTIPLE,
+    IMPOSSIBLE,
 };
 
 class SudokuSolver{
