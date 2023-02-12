@@ -1,4 +1,0 @@
-/snap/clion/222/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -S /home/samcbk/Desktop/sudokuCES11 -B /home/samcbk/Desktop/sudokuCES11/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/samcbk/Desktop/sudokuCES11/cmake-build-debug
