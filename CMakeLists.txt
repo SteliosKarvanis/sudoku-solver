@@ -8,5 +8,5 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wextra -Wall -O0 -g -pedantic -lm -fsan
 include_directories(.)
 
 file(GLOB cpp_files "*.cpp")
-add_executable(program data_structures/Sudoku.cpp solver/SudokuSolver.cpp tests/main.cpp)
+add_executable(test_all data_structures/Sudoku.cpp solver/SudokuSolver.cpp tests/test_all.cpp)
 add_executable(test solver/SudokuSolver.cpp data_structures/Sudoku.cpp tests/test.cpp)

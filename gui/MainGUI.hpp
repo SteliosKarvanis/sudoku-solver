@@ -5,4 +5,11 @@
 #ifndef SUDOKU_MAINGUI_H
 #define SUDOKU_MAINGUI_H
 
+
+
+
+
+
+
+
 #endif //SUDOKU_MAINGUI_H
