@@ -5,7 +5,7 @@
 #include "SudokuSolver.h"
 
 int main(int argc, char *argv[]){
-    shp<Sudoku> sudoku = mshp<Sudoku>("tests/1.in");
+    shp<Sudoku> sudoku = mshp<Sudoku>("examples/1.in");
     auto output = SudokuSolver::solve(*sudoku);
     Sudoku solve = output.first;
     SOLVER_STATUS status = output.second;
