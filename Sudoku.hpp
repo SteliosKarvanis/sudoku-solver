@@ -6,14 +6,11 @@
 #define LAB1EX_MATRIX_HPP
 
 #include <iostream>
-#include <vector>
 #include <set>
 #include <unordered_map>
-#include <cstdio>
 #include <fstream>
 #include <cstring>
 #include <filesystem>
-#include <sstream>
 
 #define shp std::shared_ptr
 #define mshp std::make_shared

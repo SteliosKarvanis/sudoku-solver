@@ -5,11 +5,6 @@
 #ifndef SUDOKU_SUDOKUSOLVER_H
 #define SUDOKU_SUDOKUSOLVER_H
 
-#include <iostream>
-#include <vector>
-#include <set>
-#include <unordered_map>
-#include <stack>
 #include "Sudoku.hpp"
 
 enum class SOLVER_STATUS{

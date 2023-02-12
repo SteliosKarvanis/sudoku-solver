@@ -2,7 +2,6 @@
 // Created by stelios on 15/09/2021.
 //
 
-#include "Sudoku.hpp"
 #include "SudokuSolver.h"
 
 int main(int argc, char *argv[]){
